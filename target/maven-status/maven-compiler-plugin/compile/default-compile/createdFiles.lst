@@ -1,2 +1,6 @@
-view/Grid.class
+view/GBoard.class
+view/Main.class
+view/block/Block.class
+view/block/BlockHolder.class
+view/GPanel.class
 view/Screen.class
