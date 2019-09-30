@@ -1,6 +1,9 @@
-view/GBoard.class
 view/Main.class
-view/block/Block.class
+view/block/ExtendableBlock.class
+view/utils/ImageFactory.class
+view/board/GameMain.class
+view/board/GameBoard.class
+listeners/GamePad.class
 view/block/BlockHolder.class
-view/GPanel.class
-view/Screen.class
+view/block/ColoredBlock.class
+controller/BoardController.class

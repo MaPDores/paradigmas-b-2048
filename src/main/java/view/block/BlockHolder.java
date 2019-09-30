@@ -1,21 +1,34 @@
 package view.block;
 
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author marcelo
  */
-public class BlockHolder extends JLabel{
-    private Block block;
-    
+public class BlockHolder extends ExtendableBlock {
+
+    private ColoredBlock block;
+
     public BlockHolder (int x, int y) {
-        super();
-        this.setBounds(x, y, 25, 25);
+        super(x, y);
     }
     
-    public void createBlock(int number) {
-        this.block = new Block(number, this.getX(), this.getY());
+    public ColoredBlock createBlock(int number) {
+        block = new ColoredBlock(number, this.getX(), this.getY());
+        return block;
+    }
+    
+    public void setBlock(ColoredBlock block) {
+        this.block = block;
+        this.block.setLocation(this.getX(), this.getY());
+    }
+    
+    public ColoredBlock getBlock() {
+        return block;
+    }
+    
+    public ColoredBlock removeBlock() {
+        ColoredBlock b = block;
+        block = null;
+        return b;
     }
 }
