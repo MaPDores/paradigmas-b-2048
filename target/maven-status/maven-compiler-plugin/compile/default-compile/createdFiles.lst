@@ -5,5 +5,6 @@ view/board/GameMain.class
 view/board/GameBoard.class
 listeners/GamePad.class
 view/block/BlockHolder.class
+view/board/GameMain$GameKeyListener.class
 view/block/ColoredBlock.class
 controller/BoardController.class

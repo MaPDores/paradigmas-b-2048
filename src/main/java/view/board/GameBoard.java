@@ -17,9 +17,9 @@ import view.utils.ImageFactory;
  */
 public class GameBoard extends JPanel {
     
-    Image img;
-    ImageFactory imgFactory = new ImageFactory();
-    BlockHolder[][] holders = new BlockHolder[4][4];
+    private Image img;
+    private ImageFactory imgFactory = new ImageFactory();
+    public BlockHolder[][] holders = new BlockHolder[4][4];
     
     public GameBoard () {
         super();
@@ -46,9 +46,8 @@ public class GameBoard extends JPanel {
             for(int l = 9, j = 0; j < 4; l+=72, j++) {
                 holders[i][j] = new BlockHolder(l, k);
                 add(holders[i][j]);
-                //add(holders[i][j].createBlock(512));
+                add(holders[i][j].createBlock(512));
             }
         }
-        //remove(holders[3][2].removeBlock());
     }
 }

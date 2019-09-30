@@ -1,9 +1,9 @@
 package view.board;
 
 import javax.swing.JFrame;
-import view.block.BlockHolder;
-import view.block.ColoredBlock;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 /**
  *
  * @author marcelo
@@ -17,6 +17,25 @@ public class GameMain extends JFrame {
         board = new GameBoard();
         init();
     }
+    /*TEST CODE TO BE DELETED*/
+    class GameKeyListener implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent ke) {
+            if (ke.getKeyChar() == ' ') {
+                board.remove(board.holders[3][2].removeBlock());
+                board.revalidate();
+                board.repaint();
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent ke) {}
+
+        @Override
+        public void keyReleased(KeyEvent ke) {}
+    }
+    /*TEST CODE TO BE DELETED*/
     
     public final void init() {
         setTitle("2048");
@@ -27,13 +46,17 @@ public class GameMain extends JFrame {
         setVisible(true);
         
         buildGUI();
+        buildKeyListeners();
     }
     
     private void buildGUI() {
         add(board);
     }
     
-    //private void buildKeyListeners() {
-    //    //addKeyListener(GameKeyListener);
-    //}
+    private void buildKeyListeners() {
+        /*TEST CODE TO BE DELETED*/
+        GameKeyListener space = new GameKeyListener();
+        addKeyListener(space);
+        /*TEST CODE TO BE DELETED*/
+    }
 }
