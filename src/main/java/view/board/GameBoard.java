@@ -46,8 +46,12 @@ public class GameBoard extends JPanel {
             for(int l = 9, j = 0; j < 4; l+=72, j++) {
                 holders[i][j] = new BlockHolder(l, k);
                 add(holders[i][j]);
-                add(holders[i][j].createBlock(512));
             }
         }
+        /* TEST CODE TO BE DELETED */
+        add(holders[1][0].createBlock(512));
+        
+        
+        /* TEST CODE TO BE DELETED */
     }
 }

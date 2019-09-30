@@ -9,7 +9,7 @@ import view.utils.ImageFactory;
  * 
  * Classe com campos básicos de um Block (Colored Block e Block Holder).
  */
-public class ExtendableBlock extends JLabel{
+public abstract class ExtendableBlock extends JLabel{
 
     private final ImageFactory imgFactory = new ImageFactory();
     

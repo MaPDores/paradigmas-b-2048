@@ -4,6 +4,11 @@ import javax.swing.JFrame;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+/* TEST CODE TO BE DELETED */
+import view.block.ColoredBlock;
+/* TEST CODE TO BE DELETED */
+
 /**
  *
  * @author marcelo
@@ -12,20 +17,33 @@ public class GameMain extends JFrame {
     
     private GameBoard board;
     
+    /* TEST CODE TO BE DELETED */
+    boolean isThere = false;
+    /* TEST CODE TO BE DELETED */
+    
     public GameMain() {
         super("2048");
         board = new GameBoard();
         init();
     }
-    /*TEST CODE TO BE DELETED*/
+    /* TEST CODE TO BE DELETED */
     class GameKeyListener implements KeyListener {
 
         @Override
         public void keyTyped(KeyEvent ke) {
             if (ke.getKeyChar() == ' ') {
-                board.remove(board.holders[3][2].removeBlock());
-                board.revalidate();
-                board.repaint();
+                if (!isThere) {
+                    ColoredBlock aux = board.holders[1][0].removeBlock();
+                    board.holders[1][3].setBlock(aux);
+                    isThere = true;
+                } else {
+                    ColoredBlock aux = board.holders[1][3].removeBlock();
+                    board.holders[1][0].setBlock(aux);
+                    isThere = false; 
+                }
+                //board.remove(board.holders[1][0].removeBlock());
+                //board.revalidate();
+                //board.repaint();
             }
         }
 
@@ -35,7 +53,7 @@ public class GameMain extends JFrame {
         @Override
         public void keyReleased(KeyEvent ke) {}
     }
-    /*TEST CODE TO BE DELETED*/
+    /* TEST CODE TO BE DELETED */
     
     public final void init() {
         setTitle("2048");
