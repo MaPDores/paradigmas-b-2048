@@ -232,20 +232,14 @@ public class LogicaSimples {
     
     class MyKeyListener extends KeyAdapter{
         
-        public void KeyPresser(KeyEvent e){
+        public void KeyPresser(KeyEvent e) {
             int keyCode = e.getKeyCode();
-            if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN){
+            if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
                 moveDown();
-            }
-            else{
-                if(keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT){
-                    moveLeft();
-                }
-                else{
-                    if(keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT){
-                        moveRight();
-                    }   
-                }
+            } else if(keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+                moveLeft();
+            } else if(keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+                moveRight();
             }
         }
     }
