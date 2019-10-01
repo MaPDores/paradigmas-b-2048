@@ -22,12 +22,54 @@ public class GameKeyListener implements KeyListener {
     }
     
     @Override
+        /* NOT WORKING PROPERLY */
     public void keyTyped(KeyEvent ke) {
-        if (ke.getKeyChar() == ' ') {
-            boardController.shiftLeft(holders);
-            boardController.combineLeft(holders, board);
-            boardController.shiftLeft(holders);
+        System.out.println(ke.getKeyCode());
+        switch(ke.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+            case KeyEvent.VK_LEFT:
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+            case KeyEvent.VK_RIGHT:
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+            case KeyEvent.VK_DOWN:
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
         }
+        switch(ke.getKeyChar()) {
+            case 'w':
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+            case 'a':
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+            case 's':
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+            case 'd':
+                boardController.shiftLeft(holders);
+                boardController.combineLeft(holders, board);
+                boardController.shiftLeft(holders);
+                break;
+        }
+
     }
 
     @Override
