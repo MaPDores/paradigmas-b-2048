@@ -22,12 +22,12 @@ public class BoardController {
             }
         }
     }
-    public void combineLeft(BlockHolder [][] holders, Container panel){
+    public void combineLeft(BlockHolder [][] holders, Container board){
         for(int i=0; i<4; i++){
             for(int j=0; j<3; j++){                
                 if(holders[i][j].hasBlock() && holders[i][j+1].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i][j+1].getBlock().getNumber()){                    
-                    int aux = holders[i][j].removeBlock(panel).getNumber() + holders[i][j+1].removeBlock(panel).getNumber();
-                    holders[i][j].createBlock(aux, panel);                    
+                    int aux = holders[i][j].removeBlock(board).getNumber() + holders[i][j+1].removeBlock(board).getNumber();
+                    holders[i][j].createBlock(aux, board);                    
                 }
             }
         }

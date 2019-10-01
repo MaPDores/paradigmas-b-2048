@@ -14,9 +14,14 @@ public class BlockHolder extends ExtendableBlock {
         super(x, y);
     }
     
-    public ColoredBlock createBlock(int number, Container panel) {
+    public ColoredBlock createBlock(int number,
+            //boolean isCombined, 
+            Container board) {
         block = new ColoredBlock(number, this.getX(), this.getY());
-        panel.add(block);
+        board.add(block);
+        //if (isCombined) {
+            //Animator.animateBlock(block);
+        //}
         return block;
     }
     
@@ -34,11 +39,11 @@ public class BlockHolder extends ExtendableBlock {
         block = null;
         return b;
     }
-    public ColoredBlock removeBlock(Container panel) {
+    public ColoredBlock removeBlock(Container board) {
         ColoredBlock b = block;
-        panel.remove(b);
-        panel.revalidate();
-        panel.repaint();
+        board.remove(b);
+        board.revalidate();
+        board.repaint();
         block = null;
         return b;
     }

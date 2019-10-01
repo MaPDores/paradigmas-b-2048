@@ -1,10 +1,11 @@
 view/Main.class
+logicasimples/LogicaSimples.class
 view/block/ExtendableBlock.class
 view/utils/ImageFactory.class
 view/board/GameMain.class
 view/board/GameBoard.class
-listeners/GamePad.class
+listeners/GameKeyListener.class
 view/block/BlockHolder.class
-view/board/GameMain$GameKeyListener.class
 view/block/ColoredBlock.class
 controller/BoardController.class
+logicasimples/LogicaSimples$MyKeyListener.class
