@@ -49,8 +49,22 @@ public class GameBoard extends JPanel {
             }
         }
         /* TEST CODE TO BE DELETED */
-        add(holders[1][0].createBlock(512));
-        
+        holders[0][0].createBlock(2, this);
+        holders[0][1].createBlock(2, this);
+        holders[0][2].createBlock(4, this);
+        holders[0][3].createBlock(2, this);
+        holders[1][0].createBlock(4, this);
+        holders[1][1].createBlock(2, this);
+        holders[1][2].createBlock(8, this);
+        holders[1][3].createBlock(2, this);
+        holders[2][0].createBlock(2, this);
+        holders[2][1].createBlock(16, this);
+        holders[2][2].createBlock(16, this);
+        holders[2][3].createBlock(2, this);
+        holders[3][0].createBlock(1024, this);
+        holders[3][1].createBlock(512, this);
+        holders[3][2].createBlock(256, this);
+        holders[3][3].createBlock(256, this);
         
         /* TEST CODE TO BE DELETED */
     }
