@@ -1,5 +1,6 @@
 package view.board;
 
+import controller.BoardController;
 import javax.swing.JFrame;
 
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import view.block.ColoredBlock;
  */
 public class GameMain extends JFrame {
     
+    private BoardController boardController = new BoardController();
     private GameBoard board;
     
     /* TEST CODE TO BE DELETED */
@@ -33,9 +35,10 @@ public class GameMain extends JFrame {
         public void keyTyped(KeyEvent ke) {
             if (ke.getKeyChar() == ' ') {
                 if (!isThere) {
-                    ColoredBlock aux = board.holders[1][0].removeBlock();
-                    board.holders[1][3].setBlock(aux);
-                    isThere = true;
+                    System.out.println("sds");
+                    boardController.shiftLeft(board.holders);
+                    boardController.combineLeft(board.holders, board);
+                    boardController.shiftLeft(board.holders);
                 } else {
                     ColoredBlock aux = board.holders[1][3].removeBlock();
                     board.holders[1][0].setBlock(aux);

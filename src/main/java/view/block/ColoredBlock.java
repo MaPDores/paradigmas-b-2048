@@ -1,8 +1,15 @@
 package view.block;
 
-public class ColoredBlock extends ExtendableBlock{    
+public class ColoredBlock extends ExtendableBlock{   
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+    
     public ColoredBlock (int number, int x, int y) {
         super("/assets/"+number+".png", x, y);
-        setBounds(x, y, 65, 65);
+        setSize(65, 65);
+        this.number = number;       
     }
 }
