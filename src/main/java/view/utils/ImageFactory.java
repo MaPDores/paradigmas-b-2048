@@ -13,6 +13,17 @@ import javax.swing.ImageIcon;
  * (Factory design pattern)
  */
 public class ImageFactory {
+    
+    private static ImageFactory instance;
+    
+    private ImageFactory() {}
+    
+    public static ImageFactory getInstance() {
+        if (instance == null)
+            instance = new ImageFactory();
+        return instance;
+    }
+
     public ImageIcon createImageIcon(String source) {
         Image img = null;
         try {

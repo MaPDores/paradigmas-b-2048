@@ -7,7 +7,7 @@ package view.block;
 public class ColoredBlock extends ExtendableBlock {   
     
     private int number;
-    private int BLOCK_LABEL_SIZE = 78;
+    private int BLOCK_LABEL_SIZE = 85;
 
     public ColoredBlock (int number, int x, int y) {
         super("/assets/"+number+".png", x, y);

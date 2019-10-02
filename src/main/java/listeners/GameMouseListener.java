@@ -1,8 +1,8 @@
 package listeners;
 
-import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import view.block.BlockHolder;
 
 /**
@@ -11,8 +11,8 @@ import view.block.BlockHolder;
  */
 public class GameMouseListener extends ExtendableListener implements MouseListener {
 
-    public GameMouseListener (BlockHolder[][] holders, Container board) {
-        super(holders, board);
+    public GameMouseListener (BlockHolder[][] holders) {
+        super(holders);
     }
     
     @Override

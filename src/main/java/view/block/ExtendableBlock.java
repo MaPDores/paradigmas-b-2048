@@ -1,6 +1,5 @@
 package view.block;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import view.utils.ImageFactory;
 /**
@@ -11,7 +10,7 @@ import view.utils.ImageFactory;
  */
 public abstract class ExtendableBlock extends JLabel{
 
-    private final ImageFactory imgFactory = new ImageFactory();
+    private final ImageFactory imgFactory = ImageFactory.getInstance();
     
     public ExtendableBlock (int x, int y) {
         super();

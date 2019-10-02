@@ -1,7 +1,8 @@
 package view.block;
 
 import java.awt.Container;
-import view.animation.CombinedBlockAnimator;
+import view.animator.block.BlockAnimator;
+import view.animator.block.animation.CombinedBlockAnimation;
 
 /**
  *
@@ -10,21 +11,30 @@ import view.animation.CombinedBlockAnimator;
 public class BlockHolder extends ExtendableBlock {
 
     private ColoredBlock block;
-    private CombinedBlockAnimator animator = new CombinedBlockAnimator();
+    private Container board;
+    private BlockAnimator animator;
 
-    public BlockHolder (int x, int y) {
+    public BlockHolder (int x, int y, Container board) {
+        // Manda seu X e Y para a classe pai para setar sua posição na board
         super(x, y);
+        this.board = board;
+        this.board.add(this);
+        
+        this.animator = BlockAnimator.getInstance(board);
     }
-    
-    public ColoredBlock createBlock(int number, boolean isCombined, Container board) {
+
+    // método para instanciar um novo block dado um número
+    public ColoredBlock createBlock(int number, boolean isCombined) {
         block = new ColoredBlock(number, this.getX(), this.getY());
         
         board.add(block);
         board.repaint();
         
-        if (isCombined)
-            animator.start(block, board);
-        
+        if (isCombined) {
+            animator.animateCombinedBlock(block);
+        } else {
+            animator.animateRandomBlock(block);
+        }
         return block;
     }
     
@@ -37,12 +47,15 @@ public class BlockHolder extends ExtendableBlock {
         return block;
     }
     
+    // Dettatch block do holder mas não da board
     public ColoredBlock removeBlock() {       
         ColoredBlock b = block;
         block = null;
         return b;
     }
-    public ColoredBlock removeBlock(Container board) {
+    
+    // Remove block do holder e da board
+    public ColoredBlock purgeBlock() {
         ColoredBlock b = block;
         board.remove(b);
         board.revalidate();

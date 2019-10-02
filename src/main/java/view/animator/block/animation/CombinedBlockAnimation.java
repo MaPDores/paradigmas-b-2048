@@ -1,11 +1,10 @@
-package view.animation;
+package view.animator.block.animation;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.Timer;
+import view.animator.extendable.ExtendableAnimation;
 import view.block.ColoredBlock;
 import view.utils.ImageFactory;
 
@@ -13,32 +12,31 @@ import view.utils.ImageFactory;
  *
  * @author marcelo
  */
-public class CombinedBlockAnimator implements ActionListener {
-    
-    private Container board;
+public final class CombinedBlockAnimation extends ExtendableAnimation {
+    // Variáveis de construção
     private ColoredBlock block;
     private Icon icon;
-    private Timer timer;
-    private ImageFactory imgFactory = new ImageFactory();
+    private ImageFactory imgFactory = ImageFactory.getInstance();
     
+    // Variáveis de animação
     private int i = 0;
     private double x = 1;
     private boolean isExpanding = true;
     
-    public CombinedBlockAnimator () {
-        timer = new Timer(5, this);
+    public CombinedBlockAnimation (ColoredBlock block, Container board) {
+        super(5, board);
+        start(block);
     }
     
-    public void start(ColoredBlock block, Container board) {
+    public void start(ColoredBlock block) {
         this.block = block;
-        this.board = board;
         this.icon = block.getIcon();
-        timer.start();
+        start();
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (x >= 1.2)
+        if (x >= 1.3)
             isExpanding = false;
 
         if (isExpanding) {
@@ -47,15 +45,14 @@ public class CombinedBlockAnimator implements ActionListener {
         else if (x != 1) {
             x -= 0.01;
         } else {
-            timer.stop();
+            this.timer.stop();
         }
         System.out.println("X:"+x+" count:"+i++);
         resize();
-        board.repaint();
+        panel.repaint();
     }
     
     private void resize() {
-        //System.out.println((int) (block.getIcon().getIconWidth() * x));
         block.setIcon(imgFactory.createResizedImageIcon((ImageIcon) this.icon, (int) (this.icon.getIconWidth() * x),(int) (this.icon.getIconHeight() * x)));
     }
 }

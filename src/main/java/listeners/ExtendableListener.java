@@ -1,7 +1,6 @@
 package listeners;
 
 import controller.BoardController;
-import java.awt.Container;
 import view.block.BlockHolder;
 
 /**
@@ -9,13 +8,12 @@ import view.block.BlockHolder;
  * @author marcelo
  */
 public abstract class ExtendableListener {
-    protected Container board;
+
     protected BlockHolder[][] holders;
     protected BoardController boardController;
     
-    public ExtendableListener (BlockHolder[][] holders, Container board) {
+    public ExtendableListener (BlockHolder[][] holders) {
         this.holders = holders;
-        this.board = board;
-        this.boardController = BoardController.getInstance(holders, board);
+        this.boardController = BoardController.getInstance(holders);
     }
 }

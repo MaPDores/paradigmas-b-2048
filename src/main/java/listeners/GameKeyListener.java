@@ -1,8 +1,8 @@
 package listeners;
 
-import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import view.block.BlockHolder;
 
 /**
@@ -13,8 +13,8 @@ import view.block.BlockHolder;
  */
 public class GameKeyListener extends ExtendableListener implements KeyListener {
     
-    public GameKeyListener (BlockHolder[][] holders, Container board) {
-        super(holders, board);
+    public GameKeyListener (BlockHolder[][] holders) {
+        super(holders);
     }
     
     @Override
@@ -22,24 +22,24 @@ public class GameKeyListener extends ExtendableListener implements KeyListener {
     public void keyTyped(KeyEvent ke) {
         // Cria variável que guarda se houve movimentação na Board
         boolean hasMoved = false;
-
+        
         // Verifica o Char do evento
         switch(ke.getKeyChar()) {
             case 'w':
-                hasMoved = boardController.moveUp(holders, board);
+                hasMoved = boardController.moveUp(holders);
                 break;
             case 'a':
-                hasMoved = boardController.moveLeft(holders, board);
+                hasMoved = boardController.moveLeft(holders);
                 break;
             case 's':
-                hasMoved = boardController.moveDown(holders, board);
+                hasMoved = boardController.moveDown(holders);
                 break;
             case 'd':
-                hasMoved = boardController.moveRight(holders, board);
+                hasMoved = boardController.moveRight(holders);
                 break;
         }
         if (hasMoved)
-            boardController.createRandom(holders, board);
+            boardController.createRandom(holders);
     }
 
     @Override
