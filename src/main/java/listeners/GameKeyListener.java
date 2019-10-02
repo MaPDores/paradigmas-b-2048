@@ -20,30 +20,30 @@ public class GameKeyListener extends ExtendableListener implements KeyListener {
     @Override
         /* NOT WORKING PROPERLY */
     public void keyTyped(KeyEvent ke) {
-        // Cria variável que guarda se houve movimentação na Board
-        boolean hasMoved = false;
-        
-        // Verifica o Char do evento
-        switch(ke.getKeyChar()) {
-            case 'w':
-                hasMoved = boardController.moveUp(holders);
-                break;
-            case 'a':
-                hasMoved = boardController.moveLeft(holders);
-                break;
-            case 's':
-                hasMoved = boardController.moveDown(holders);
-                break;
-            case 'd':
-                hasMoved = boardController.moveRight(holders);
-                break;
-        }
-        if (hasMoved)
-            boardController.createRandom(holders);
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {}
+    public void keyPressed(KeyEvent ke) {
+        boolean hasMoved = false;
+        if(ke.getKeyCode() == KeyEvent.VK_W || ke.getKeyCode() == KeyEvent.VK_UP){
+            boardController.moveUp(holders);
+            hasMoved = true;
+        }
+        if(ke.getKeyCode() == KeyEvent.VK_A || ke.getKeyCode() == KeyEvent.VK_LEFT){
+            boardController.moveLeft(holders);
+            hasMoved = true;
+        }
+        if(ke.getKeyCode() == KeyEvent.VK_S || ke.getKeyCode() == KeyEvent.VK_DOWN){
+            boardController.moveDown(holders);
+            hasMoved = true;
+        }
+        if(ke.getKeyCode() == KeyEvent.VK_D || ke.getKeyCode() == KeyEvent.VK_RIGHT){
+            boardController.moveRight(holders);
+            hasMoved = true;
+        }
+        if (hasMoved)
+            boardController.createRandom(holders);       
+    }
 
     @Override
     public void keyReleased(KeyEvent ke) {}
