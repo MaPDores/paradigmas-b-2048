@@ -32,4 +32,9 @@ public class ImageFactory {
         }
         return img;
     }
+    
+    public ImageIcon createResizedImageIcon(ImageIcon imgIcon, int width, int height) {
+        Image image = imgIcon.getImage();
+        return new ImageIcon(image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH));
+    }
 }

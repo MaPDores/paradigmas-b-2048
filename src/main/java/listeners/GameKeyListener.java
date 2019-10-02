@@ -1,6 +1,5 @@
 package listeners;
 
-import controller.BoardController;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,22 +8,19 @@ import view.block.BlockHolder;
 /**
  *
  * @author marcelo
+ * 
+ * Classe que ouve as Teclas do Teclado e executa os comandos.
  */
-public class GameKeyListener implements KeyListener {
-    
-    private Container board;
-    private BlockHolder[][] holders;
-    private BoardController boardController = new BoardController();
+public class GameKeyListener extends ExtendableListener implements KeyListener {
     
     public GameKeyListener (BlockHolder[][] holders, Container board) {
-        this.holders = holders;
-        this.board = board;
+        super(holders, board);
     }
     
     @Override
         /* NOT WORKING PROPERLY */
     public void keyTyped(KeyEvent ke) {
-        System.out.println(ke.getKeyCode());
+        System.out.println(ke.getKeyChar());
         switch(ke.getKeyCode()) {
             case KeyEvent.VK_UP:
                 boardController.shiftLeft(holders);

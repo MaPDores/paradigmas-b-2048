@@ -3,6 +3,7 @@ package view.board;
 import javax.swing.JFrame;
 
 import listeners.GameKeyListener;
+import listeners.GameMouseListener;
 
 /**
  *
@@ -12,6 +13,7 @@ public class GameMain extends JFrame {
     
     private GameBoard board;
     private GameKeyListener keyListener;
+    private GameMouseListener mouseListener;
     
     public GameMain() {
         super("2048");
@@ -29,6 +31,7 @@ public class GameMain extends JFrame {
         
         buildGUI();
         buildKeyListeners();
+        buildMouseListeners();
     }
     
     private void buildGUI() {
@@ -40,5 +43,8 @@ public class GameMain extends JFrame {
         addKeyListener(keyListener);
     }
     
-    private void buildMouseListeners() {}
+    private void buildMouseListeners() {
+        mouseListener = new GameMouseListener(board.holders, board);
+        addMouseListener(mouseListener);
+    }
 }

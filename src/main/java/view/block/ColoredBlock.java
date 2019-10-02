@@ -1,16 +1,21 @@
 package view.block;
-
-public class ColoredBlock extends ExtendableBlock{   
+/**
+ *
+ *
+ * Bloco pintado com número, bloco real do jogo.
+ */
+public class ColoredBlock extends ExtendableBlock {   
     
     private int number;
+    private int BLOCK_LABEL_SIZE = 78;
 
-    public int getNumber() {
-        return number;
-    }
-    
     public ColoredBlock (int number, int x, int y) {
         super("/assets/"+number+".png", x, y);
-        setSize(this.getIcon().getIconWidth(), this.getIcon().getIconHeight());
+        setSize(BLOCK_LABEL_SIZE, BLOCK_LABEL_SIZE);
         this.number = number;
+    }
+    
+    public int getNumber() {
+        return number;
     }
 }

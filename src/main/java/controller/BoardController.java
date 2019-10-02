@@ -3,6 +3,10 @@ package controller;
 import java.awt.Container;
 import view.block.BlockHolder;
 
+/**
+ *
+ * @author Victor
+ */
 public class BoardController {
     public void BoardController() {
         
@@ -27,7 +31,7 @@ public class BoardController {
             for(int j=0; j<3; j++){                
                 if(holders[i][j].hasBlock() && holders[i][j+1].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i][j+1].getBlock().getNumber()){                    
                     int aux = holders[i][j].removeBlock(board).getNumber() + holders[i][j+1].removeBlock(board).getNumber();
-                    holders[i][j].createBlock(aux, board);                    
+                    holders[i][j].createBlock(aux, true, board);                    
                 }
             }
         }
