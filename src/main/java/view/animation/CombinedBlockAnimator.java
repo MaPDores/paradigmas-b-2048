@@ -13,7 +13,7 @@ import view.utils.ImageFactory;
  *
  * @author marcelo
  */
-public class BlockAnimator implements ActionListener {
+public class CombinedBlockAnimator implements ActionListener {
     
     private Container board;
     private ColoredBlock block;
@@ -25,7 +25,7 @@ public class BlockAnimator implements ActionListener {
     private double x = 1;
     private boolean isExpanding = true;
     
-    public BlockAnimator () {
+    public CombinedBlockAnimator () {
         timer = new Timer(5, this);
     }
     

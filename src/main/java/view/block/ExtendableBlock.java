@@ -23,9 +23,5 @@ public abstract class ExtendableBlock extends JLabel{
         this.setIcon(imgFactory.createImageIcon(imageSource));
         this.setLocation(x, y);
         this.setHorizontalAlignment(JLabel.CENTER);
-       //System.out.print(this.getHorizontalAlignment()+"\n");
-       //System.out.print(this.getVerticalAlignment()+"\n");
-       //System.out.print(this.getAlignmentX()+"\n");
-       //System.out.print(this.getAlignmentY()+"\n\n");
     }
 }

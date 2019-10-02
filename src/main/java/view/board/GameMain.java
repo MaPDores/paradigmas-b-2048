@@ -17,7 +17,6 @@ public class GameMain extends JFrame {
     
     public GameMain() {
         super("2048");
-        board = new GameBoard();
         init();
     }
     
@@ -35,6 +34,7 @@ public class GameMain extends JFrame {
     }
     
     private void buildGUI() {
+        board = new GameBoard();
         add(board);
     }
     

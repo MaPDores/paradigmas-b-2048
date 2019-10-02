@@ -9,14 +9,24 @@ import view.block.*;
  *
  * @author Victor
  */
-public class BoardController {
-    private Random r = new Random();
+public final class BoardController {
 
-    public void BoardController() {
-        
+    private Random r = new Random();
+    private static BoardController instance;
+
+    private BoardController(BlockHolder[][] holders, Container board) {
+        this.createRandom(holders, board);
+        this.createRandom(holders, board);
     }
     
-    public void createRandom(BlockHolder[][] holders, Container panel){
+    public static BoardController getInstance(BlockHolder[][] holders, Container board) {
+        if (instance == null) {
+            instance = new BoardController(holders, board);
+        }
+        return instance;
+    }
+    
+    public void createRandom(BlockHolder[][] holders, Container board){
         ArrayList<Integer> freeI = new ArrayList();
         ArrayList<Integer> freeJ = new ArrayList();
         int number;
@@ -39,11 +49,97 @@ public class BoardController {
         int selectedI = freeI.get(choosedPosition);         //coloca o valor sorteado na posicao sorteada
         int selectedJ = freeJ.get(choosedPosition);
         System.out.format("%d %d %d",selectedI, selectedJ, number);
-        holders[selectedI][selectedJ].createBlock(number, false, panel);        
+        holders[selectedI][selectedJ].createBlock(number, false, board);        
+    }
+
+    public boolean moveLeft(BlockHolder [][] holders, Container board) {
+        ColoredBlock [][] aux = new ColoredBlock[4][4];
+        // Salva o estado atual dos Holders
+        for(int i=0; i<4; i++){         
+            for(int j=0; j<4; j++){
+                aux[i][j] = holders[i][j].getBlock();
+            }
+        }        
+        // Shifta pra Esquerda
+        shiftLeft(holders);
+        // Combina
+        combineLeft(holders, board);
+        // Shifta novamente
+        shiftLeft(holders);
+    
+        // Verifica se algum bloco se moveu (ou combinou)
+        return hasMoved(aux, holders);
+    }
+
+    public boolean moveUp(BlockHolder [][] holders, Container board) {
+        ColoredBlock [][] aux = new ColoredBlock[4][4];
+        // Salva o estado atual dos Holders
+        for(int i=0; i<4; i++){         
+            for(int j=0; j<4; j++){
+                aux[i][j] = holders[i][j].getBlock();
+            }
+        }
+        // Shifta pra Cima
+        shiftUp(holders);
+        // Combina
+        combineUp(holders, board);
+        // Shifta novamente
+        shiftUp(holders);
+    
+        // Verifica se algum bloco se moveu (ou combinou)
+        return hasMoved(aux, holders);
+    }
+
+    public boolean moveDown(BlockHolder [][] holders, Container board) {
+        ColoredBlock [][] aux = new ColoredBlock[4][4];
+        // Salva o estado atual dos Holders
+        for(int i=0; i<4; i++){         
+            for(int j=0; j<4; j++){
+                aux[i][j] = holders[i][j].getBlock();
+            }
+        }
+        // Shifta pra Baixo
+        shiftDown(holders);
+        // Combina
+        combineDown(holders, board);
+        // Shifta novamente
+        shiftDown(holders);
+    
+        // Verifica se algum bloco se moveu (ou combinou)
+        return hasMoved(aux, holders);
+    }
+
+    public boolean moveRight(BlockHolder [][] holders, Container board) {
+        ColoredBlock [][] aux = new ColoredBlock[4][4];
+        // Salva o estado atual dos Holders
+        for(int i=0; i<4; i++){         
+            for(int j=0; j<4; j++){
+                aux[i][j] = holders[i][j].getBlock();
+            }
+        }
+        // Shifta pra Direita
+        shiftRight(holders);
+        // Combina
+        combineRight(holders, board);
+        // Shifta novamente
+        shiftRight(holders);
+    
+        // Verifica se algum bloco se moveu (ou combinou)
+        return hasMoved(aux, holders);
+    }
+
+
+    private boolean hasMoved(ColoredBlock [][] aux, BlockHolder [][] holders) {
+        for(int i=0; i<4; i++){         
+            for(int j=0; j<4; j++){
+                if (aux[i][j] != holders[i][j].getBlock())
+                    return true;
+            }
+        }
+        return false;
     }
     
-    
-    public void shiftLeft(BlockHolder [][] holders){              
+    private void shiftLeft(BlockHolder [][] holders){              
         for(int i=0; i<4; i++){
             int aux = -1;         
             for(int j=0; j<4; j++){
@@ -52,22 +148,23 @@ public class BoardController {
                 }
                 else if(aux != -1 && holders[i][j].getBlock() != null){
                     holders[i][aux].setBlock(holders[i][j].removeBlock());                  
-                    aux = j;
+                    aux++;
                 }   
             }
         }
     }
-    public void combineLeft(BlockHolder [][] holders, Container panel){
+
+    private void combineLeft(BlockHolder [][] holders, Container board){
         for(int i=0; i<4; i++){
             for(int j=0; j<3; j++){                
                 if(holders[i][j].hasBlock() && holders[i][j+1].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i][j+1].getBlock().getNumber()){
-                    int aux = holders[i][j].removeBlock(panel).getNumber() + holders[i][j+1].removeBlock(panel).getNumber();
-                    holders[i][j].createBlock(aux, true, panel);                    
+                    int aux = holders[i][j].removeBlock(board).getNumber() + holders[i][j+1].removeBlock(board).getNumber();
+                    holders[i][j].createBlock(aux, true, board);                    
                 }
             }
         }
     }
-    public void shiftRight(BlockHolder [][] holders){              
+    private void shiftRight(BlockHolder [][] holders){              
         for(int i=0; i<4; i++){
             int aux = -1;         
             for(int j=3; j>=0; j--){
@@ -76,24 +173,23 @@ public class BoardController {
                 }
                 else if(aux != -1 && holders[i][j].getBlock() != null){
                     holders[i][aux].setBlock(holders[i][j].removeBlock());                  
-                    aux = j;
+                    aux--;
                 }   
             }
         }
     }
-    
-    public void combineRight(BlockHolder [][] holders, Container panel){
+    private void combineRight(BlockHolder [][] holders, Container board){
         for(int i=0; i<4; i++){
             for(int j=3; j>0; j--){                
                 if(holders[i][j].hasBlock() && holders[i][j-1].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i][j-1].getBlock().getNumber()){                    
-                    int aux = holders[i][j].removeBlock(panel).getNumber() + holders[i][j-1].removeBlock(panel).getNumber();
-                    holders[i][j].createBlock(aux, true, panel);                    
+                    int aux = holders[i][j].removeBlock(board).getNumber() + holders[i][j-1].removeBlock(board).getNumber();
+                    holders[i][j].createBlock(aux, true, board);                    
                 }
             }
         }
     }
     
-    public void shiftUp(BlockHolder [][] holders){              
+    private void shiftUp(BlockHolder [][] holders){              
         for(int j=0; j<4; j++){
             int aux = -1;         
             for(int i=0; i<4; i++){
@@ -102,23 +198,23 @@ public class BoardController {
                 }
                 else if(aux != -1 && holders[i][j].getBlock() != null){
                     holders[aux][j].setBlock(holders[i][j].removeBlock());                  
-                    aux = i;
+                    aux++;
                 }   
             }
         }
     }
-    public void combineUp(BlockHolder [][] holders, Container panel){
+    private void combineUp(BlockHolder [][] holders, Container board){
         for(int j=0; j<4; j++){
             for(int i=0; i<3; i++){                
                 if(holders[i][j].hasBlock() && holders[i+1][j].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i+1][j].getBlock().getNumber()){                    
-                    int aux = holders[i][j].removeBlock(panel).getNumber() + holders[i+1][j].removeBlock(panel).getNumber();
-                    holders[i][j].createBlock(aux, true, panel);                    
+                    int aux = holders[i][j].removeBlock(board).getNumber() + holders[i+1][j].removeBlock(board).getNumber();
+                    holders[i][j].createBlock(aux, true, board);                    
                 }
             }
         }
     }
     
-    public void shiftDown(BlockHolder [][] holders){              
+    private void shiftDown(BlockHolder [][] holders){              
         for(int j=0; j<4; j++){
             int aux = -1;         
             for(int i=3; i>=0; i--){
@@ -127,18 +223,17 @@ public class BoardController {
                 }
                 else if(aux != -1 && holders[i][j].getBlock() != null){
                     holders[aux][j].setBlock(holders[i][j].removeBlock());                  
-                    aux = i;
+                    aux--;
                 }   
             }
         }
     }
-    
-    public void combineDown(BlockHolder [][] holders, Container panel){
+    private void combineDown(BlockHolder [][] holders, Container board){
         for(int j=0; j<4; j++){
             for(int i=3; i>0; i--){                
                 if(holders[i][j].hasBlock() && holders[i-1][j].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i-1][j].getBlock().getNumber()){                    
-                    int aux = holders[i][j].removeBlock(panel).getNumber() + holders[i-1][j].removeBlock(panel).getNumber();
-                    holders[i][j].createBlock(aux, true, panel);                    
+                    int aux = holders[i][j].removeBlock(board).getNumber() + holders[i-1][j].removeBlock(board).getNumber();
+                    holders[i][j].createBlock(aux, true, board);                    
                 }
             }
         }

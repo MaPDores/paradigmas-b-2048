@@ -1,7 +1,7 @@
 package view.block;
 
 import java.awt.Container;
-import view.animation.BlockAnimator;
+import view.animation.CombinedBlockAnimator;
 
 /**
  *
@@ -10,8 +10,7 @@ import view.animation.BlockAnimator;
 public class BlockHolder extends ExtendableBlock {
 
     private ColoredBlock block;
-    //TODO: colocar objeto board na classe
-    private BlockAnimator animator = new BlockAnimator();
+    private CombinedBlockAnimator animator = new CombinedBlockAnimator();
 
     public BlockHolder (int x, int y) {
         super(x, y);
@@ -19,9 +18,13 @@ public class BlockHolder extends ExtendableBlock {
     
     public ColoredBlock createBlock(int number, boolean isCombined, Container board) {
         block = new ColoredBlock(number, this.getX(), this.getY());
+        
         board.add(block);
+        board.repaint();
+        
         if (isCombined)
             animator.start(block, board);
+        
         return block;
     }
     

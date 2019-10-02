@@ -20,52 +20,26 @@ public class GameKeyListener extends ExtendableListener implements KeyListener {
     @Override
         /* NOT WORKING PROPERLY */
     public void keyTyped(KeyEvent ke) {
-        System.out.println(ke.getKeyChar());
-        switch(ke.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
-                break;
-            case KeyEvent.VK_LEFT:
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
-                break;
-            case KeyEvent.VK_RIGHT:
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
-                break;
-            case KeyEvent.VK_DOWN:
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
-                break;
-        }
+        // Cria variável que guarda se houve movimentação na Board
+        boolean hasMoved = false;
+
+        // Verifica o Char do evento
         switch(ke.getKeyChar()) {
             case 'w':
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
+                hasMoved = boardController.moveUp(holders, board);
                 break;
             case 'a':
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
+                hasMoved = boardController.moveLeft(holders, board);
                 break;
             case 's':
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
+                hasMoved = boardController.moveDown(holders, board);
                 break;
             case 'd':
-                boardController.shiftLeft(holders);
-                boardController.combineLeft(holders, board);
-                boardController.shiftLeft(holders);
+                hasMoved = boardController.moveRight(holders, board);
                 break;
         }
-
+        if (hasMoved)
+            boardController.createRandom(holders, board);
     }
 
     @Override

@@ -11,10 +11,11 @@ import view.block.BlockHolder;
 public abstract class ExtendableListener {
     protected Container board;
     protected BlockHolder[][] holders;
-    protected BoardController boardController = new BoardController();
+    protected BoardController boardController;
     
     public ExtendableListener (BlockHolder[][] holders, Container board) {
         this.holders = holders;
         this.board = board;
+        this.boardController = BoardController.getInstance(holders, board);
     }
 }
