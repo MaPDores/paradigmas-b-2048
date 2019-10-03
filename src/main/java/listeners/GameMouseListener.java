@@ -45,11 +45,9 @@ public class GameMouseListener extends ExtendableListener implements MouseListen
            }
            if (xVariation > 0 && yVariation > 0) {
                if (xVariation > yVariation) {
-                   boardController.moveRight(holders);
-                   hasMoved = true;
+                   hasMoved = boardController.moveRight(holders);
                } else {
-                   boardController.moveDown(holders);
-                   hasMoved = true;
+                   hasMoved = boardController.moveDown(holders);
                }
            }
            if (xVariation < 0 && yVariation > 0) {

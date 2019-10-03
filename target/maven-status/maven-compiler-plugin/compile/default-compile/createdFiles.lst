@@ -12,5 +12,4 @@ view\animator\block\animation\CombinedBlockAnimation.class
 listeners\GameKeyListener.class
 listeners\GameMouseListener.class
 view\animator\extendable\ExtendableAnimation.class
-listeners\GameArrowListener.class
 view\block\ColoredBlock.class
