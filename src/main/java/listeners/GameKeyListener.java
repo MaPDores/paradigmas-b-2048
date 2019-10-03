@@ -41,6 +41,9 @@ public class GameKeyListener extends ExtendableListener implements KeyListener {
             boardController.moveRight(holders);
             hasMoved = true;
         }
+        if(ke.getKeyCode() == KeyEvent.VK_SPACE){
+            boardController.easterEgg(holders);
+        }
         if (hasMoved)
             boardController.createRandom(holders);       
     }

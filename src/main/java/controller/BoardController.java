@@ -26,31 +26,35 @@ public final class BoardController {
         return instance;
     }
     
-    public void createRandom(BlockHolder[][] holders){
-        ArrayList<Integer> freeI = new ArrayList();
-        ArrayList<Integer> freeJ = new ArrayList();
-        int number;
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-                if(!holders[i][j].hasBlock()){
-                    freeI.add(i);
-                    freeJ.add(j);
-                }
-            }           
-        }
-        int choosedPosition = r.nextInt(freeI.size());
-        int choosedNumber = r.nextInt(10);
-        if(choosedNumber < 2){                               //4 ou 2
+    public void createRandom(BlockHolder[][] holders){        
+        try{
+            ArrayList<Integer> freeI = new ArrayList();
+            ArrayList<Integer> freeJ = new ArrayList();
+            int number;
+            for(int i = 0; i < 4; i++){
+                for(int j = 0; j < 4; j++){
+                    if(!holders[i][j].hasBlock()){
+                        freeI.add(i);
+                        freeJ.add(j);
+                    }
+                }           
+            }
+            int choosedPosition = r.nextInt(freeI.size());
+            int choosedNumber = r.nextInt(10);
+            if(choosedNumber < 2){                               //4 ou 2
                 number = 4;
             }
             else{
                 number = 2;
             }
-        int selectedI = freeI.get(choosedPosition);         //coloca o valor sorteado na posicao sorteada
-        int selectedJ = freeJ.get(choosedPosition);
-        holders[selectedI][selectedJ].createBlock(number, false);        
+            int selectedI = freeI.get(choosedPosition);         //coloca o valor sorteado na posicao sorteada
+            int selectedJ = freeJ.get(choosedPosition);
+            holders[selectedI][selectedJ].createBlock(number, false);            
+        }   catch (Exception e) {
+                System.out.println("Game Over");
+            }
     }
-
+    
     public boolean moveLeft(BlockHolder [][] holders) {
         ColoredBlock [][] aux = new ColoredBlock[4][4];
         // Salva o estado atual dos Holders
@@ -236,5 +240,27 @@ public final class BoardController {
                 }
             }
         }
+    }
+    
+    public void easterEgg(BlockHolder [][] holders){
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                if(holders[i][j].hasBlock()){
+                    holders[i][j].purgeBlock();
+                }
+            }           
+        }
+        holders[2][1].createBlock(1024, true);
+        holders[2][2].createBlock(1024, true);
+    }
+    
+    private void youWon(BlockHolder [][] holders){
+        for(int i = 0; i < 4; i++){
+                for(int j = 0; j < 4; j++){
+                    if(holders[i][j].getBlock().getNumber() == 2048){
+                        System.out.println("You Won");                       
+                    }
+                }           
+            }
     }
 }
