@@ -1,5 +1,5 @@
-# paradigmas-b-2048
-Jogo 2048 : Paragimas de Programação B
+# Jogo 2048
+Reprodução do jogo disponível neste [link](https://rachacuca.com.br/raciocinio/2048/).
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
