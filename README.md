@@ -21,3 +21,6 @@ $ cd ../lorem
 $ npm install
 $ npm start
 ```
+
+## Criadores
+[Marcelo Peralta](https://github.com/MaPDores) e [Victor dos Santos](https://github.com/AnyVictor)
