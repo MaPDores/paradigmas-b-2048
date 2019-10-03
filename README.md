@@ -3,6 +3,7 @@
 Reprodução do jogo disponível neste [link](https://rachacuca.com.br/raciocinio/2048/).
 ## Glossario
 * [Informações Gerais](#informações-gerais)
+* [Easter Egg](#easter-egg)
 * [Tecnologias](#tecnologias)
 * [Setup](#setup)
 
@@ -10,7 +11,7 @@ Reprodução do jogo disponível neste [link](https://rachacuca.com.br/raciocini
 2048 é jogado em um tabuleiro de 4×4, com peças numéricas que deslizam suavemente quando o jogador as move. Cada vez, um novo aparece aleatoriamente em um local vazio na placa com um valor de 2 ou 4. Os blocos deslizam o mais longe possível na direção escolhida até que eles sejam interrompidos por qualquer outro bloco ou a borda do tabuleiro. Se duas peças do mesmo número colidem durante a movimentação, elas irão se fundir em um bloco com o valor total das duas peças que colidiram. A peça resultante não pode se fundir com outra peça novamente na mesma jogada. O jogo acaba quando o jogador consegue juntar dois blocos e criar um com o valor de 2048.
 
 ## Easter Egg
-Caso o jogo esteja muito dificil é possivel ativar o "Easter Egg" pressionando a barra de espaço
+Caso o jogo esteja muito dificil é possivel ativar o "Easter Egg" pressionando a barra de espaço.
 	
 ## Tecnologias
 O projeto foi criado com:
