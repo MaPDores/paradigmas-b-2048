@@ -1,7 +1,6 @@
 package view.board;
 
 import javax.swing.JFrame;
-import listeners.GameArrowListener;
 
 import listeners.GameKeyListener;
 import listeners.GameMouseListener;
@@ -15,7 +14,6 @@ public class GameMain extends JFrame {
     private GameBoard board;
     private GameKeyListener keyListener;
     private GameMouseListener mouseListener;
-    private GameArrowListener arrowListener;
     
     public GameMain() {
         super("2048");
@@ -33,17 +31,11 @@ public class GameMain extends JFrame {
         buildGUI();
         buildKeyListeners();
         buildMouseListeners();
-        buildArrowListeners();
     }
     
     private void buildGUI() {
         board = new GameBoard();
         add(board);
-    }
-    
-    private void buildArrowListeners() {
-        arrowListener = new GameArrowListener(board.holders);
-        addKeyListener(arrowListener);
     }
     
     private void buildKeyListeners() {
