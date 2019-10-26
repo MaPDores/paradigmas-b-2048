@@ -26,7 +26,7 @@ public class GameMain extends JFrame {
         setTitle("2048");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(550, 250, 298, 328);
+        setBounds(550, 250, 310, 335);
         setResizable(false);
         setVisible(true);
         

@@ -14,7 +14,7 @@ public final class BoardController {
     private static Random r = new Random();
     /*private static BoardController instance;
 
-    private BoardController(BlockHolder[][] holders) {
+    private BoardController(BlockHolder[][] holders) {  
         this.createRandom(holders);
         this.createRandom(holders);
     }
