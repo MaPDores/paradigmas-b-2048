@@ -1,5 +1,6 @@
 package view.board;
 
+import controller.BoardController;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -48,6 +49,8 @@ public class GameBoard extends JPanel {
             for(int l = -2, j = 0; j < 4; l+=72, j++) {
                 holders[i][j] = new BlockHolder(l, k, this);
             }
-        }        
+        }
+        BoardController.createRandom(holders);
+        BoardController.createRandom(holders);
     }
 }

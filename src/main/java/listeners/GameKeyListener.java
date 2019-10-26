@@ -3,6 +3,7 @@ package listeners;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import controller.BoardController;
 import view.block.BlockHolder;
 
 /**
@@ -26,26 +27,22 @@ public class GameKeyListener extends ExtendableListener implements KeyListener {
     public void keyPressed(KeyEvent ke) {
         boolean hasMoved = false;
         if(ke.getKeyCode() == KeyEvent.VK_W || ke.getKeyCode() == KeyEvent.VK_UP){
-            boardController.moveUp(holders);
-            hasMoved = true;
+            hasMoved = BoardController.moveUp(holders);
         }
         if(ke.getKeyCode() == KeyEvent.VK_A || ke.getKeyCode() == KeyEvent.VK_LEFT){
-            boardController.moveLeft(holders);
-            hasMoved = true;
+            hasMoved = BoardController.moveLeft(holders);
         }
         if(ke.getKeyCode() == KeyEvent.VK_S || ke.getKeyCode() == KeyEvent.VK_DOWN){
-            boardController.moveDown(holders);
-            hasMoved = true;
+            hasMoved = BoardController.moveDown(holders);
         }
         if(ke.getKeyCode() == KeyEvent.VK_D || ke.getKeyCode() == KeyEvent.VK_RIGHT){
-            boardController.moveRight(holders);
-            hasMoved = true;
+            hasMoved = BoardController.moveRight(holders);
         }
         if(ke.getKeyCode() == KeyEvent.VK_SPACE){
-            boardController.easterEgg(holders);
+            BoardController.easterEgg(holders);
         }
         if (hasMoved)
-            boardController.createRandom(holders);       
+            BoardController.createRandom(holders);       
     }
 
     @Override

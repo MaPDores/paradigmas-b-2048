@@ -1,5 +1,6 @@
 package listeners;
 
+import controller.BoardController;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -38,32 +39,29 @@ public class GameMouseListener extends ExtendableListener implements MouseListen
                if (xVariation > yVariation) {
                    System.out.println("Movimentacao nao detectada, tente novamente");
                } else {
-                   boardController.moveUp(holders);
-                   hasMoved = true;
+                   hasMoved = BoardController.moveUp(holders);
                    yVariation = (yVariation * (-1));
                }
            }
            if (xVariation > 0 && yVariation > 0) {
                if (xVariation > yVariation) {
-                   boardController.moveRight(holders);
-                   hasMoved = true;
+                   hasMoved = BoardController.moveRight(holders);
                } else {
-                   boardController.moveDown(holders);
-                   hasMoved = true;
+                   hasMoved = BoardController.moveDown(holders);
                }
            }
            if (xVariation < 0 && yVariation > 0) {
                xVariation = (xVariation * (-1));
                if (xVariation > yVariation) {
-                   boardController.moveLeft(holders);
-                   hasMoved = true;
+                   hasMoved = BoardController.moveLeft(holders);
                } else {
                    System.out.println("Movimentacao nao detectada, tente novamente");
                }
            }
            if (hasMoved)
-               boardController.createRandom(holders);
+               BoardController.createRandom(holders);
        } catch (java.lang.NullPointerException me) {
+           me.printStackTrace();
        }
    }
 

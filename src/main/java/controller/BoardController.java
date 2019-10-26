@@ -11,8 +11,8 @@ import view.block.*;
  */
 public final class BoardController {
 
-    private Random r = new Random();
-    private static BoardController instance;
+    private static Random r = new Random();
+    /*private static BoardController instance;
 
     private BoardController(BlockHolder[][] holders) {
         this.createRandom(holders);
@@ -24,9 +24,9 @@ public final class BoardController {
             instance = new BoardController(holders);
         }
         return instance;
-    }
+    }*/
     
-    public void createRandom(BlockHolder[][] holders){        
+    public static void createRandom(BlockHolder[][] holders){        
         try{
             ArrayList<Integer> freeI = new ArrayList();
             ArrayList<Integer> freeJ = new ArrayList();
@@ -55,7 +55,7 @@ public final class BoardController {
             }
     }
     
-    public boolean moveLeft(BlockHolder [][] holders) {
+    public static boolean moveLeft(BlockHolder [][] holders) {
         ColoredBlock [][] aux = new ColoredBlock[4][4];
         // Salva o estado atual dos Holders
         for(int i=0; i<4; i++){         
@@ -74,7 +74,7 @@ public final class BoardController {
         return hasMoved(aux, holders);
     }
 
-    public boolean moveUp(BlockHolder [][] holders) {
+    public static boolean moveUp(BlockHolder [][] holders) {
         ColoredBlock [][] aux = new ColoredBlock[4][4];
         // Salva o estado atual dos Holders
         for(int i=0; i<4; i++){         
@@ -93,7 +93,7 @@ public final class BoardController {
         return hasMoved(aux, holders);
     }
 
-    public boolean moveDown(BlockHolder [][] holders) {
+    public static boolean moveDown(BlockHolder [][] holders) {
         ColoredBlock [][] aux = new ColoredBlock[4][4];
         // Salva o estado atual dos Holders
         for(int i=0; i<4; i++){         
@@ -112,7 +112,7 @@ public final class BoardController {
         return hasMoved(aux, holders);
     }
 
-    public boolean moveRight(BlockHolder [][] holders) {
+    public static boolean moveRight(BlockHolder [][] holders) {
         ColoredBlock [][] aux = new ColoredBlock[4][4];
         // Salva o estado atual dos Holders
         for(int i=0; i<4; i++){         
@@ -132,7 +132,7 @@ public final class BoardController {
     }
 
 
-    private boolean hasMoved(ColoredBlock [][] aux, BlockHolder [][] holders) {
+    private static boolean hasMoved(ColoredBlock [][] aux, BlockHolder [][] holders) {
         for(int i=0; i<4; i++){         
             for(int j=0; j<4; j++){
                 if (aux[i][j] != holders[i][j].getBlock())
@@ -142,7 +142,7 @@ public final class BoardController {
         return false;
     }
     
-    private void shiftLeft(BlockHolder [][] holders){              
+    private static void shiftLeft(BlockHolder [][] holders){              
         for(int i=0; i<4; i++){
             int aux = -1;         
             for(int j=0; j<4; j++){
@@ -157,7 +157,7 @@ public final class BoardController {
         }
     }
 
-    private void combineLeft(BlockHolder [][] holders){
+    private static void combineLeft(BlockHolder [][] holders){
         for(int i=0; i<4; i++){
             for(int j=0; j<3; j++){                
                 if(holders[i][j].hasBlock() && holders[i][j+1].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i][j+1].getBlock().getNumber()){
@@ -167,7 +167,7 @@ public final class BoardController {
             }
         }
     }
-    private void shiftRight(BlockHolder [][] holders){              
+    private static void shiftRight(BlockHolder [][] holders){              
         for(int i=0; i<4; i++){
             int aux = -1;         
             for(int j=3; j>=0; j--){
@@ -181,7 +181,7 @@ public final class BoardController {
             }
         }
     }
-    private void combineRight(BlockHolder [][] holders){
+    private static void combineRight(BlockHolder [][] holders){
         for(int i=0; i<4; i++){
             for(int j=3; j>0; j--){                
                 if(holders[i][j].hasBlock() && holders[i][j-1].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i][j-1].getBlock().getNumber()){                    
@@ -192,7 +192,7 @@ public final class BoardController {
         }
     }
     
-    private void shiftUp(BlockHolder [][] holders){              
+    private static void shiftUp(BlockHolder [][] holders){              
         for(int j=0; j<4; j++){
             int aux = -1;         
             for(int i=0; i<4; i++){
@@ -206,7 +206,7 @@ public final class BoardController {
             }
         }
     }
-    private void combineUp(BlockHolder [][] holders){
+    private static void combineUp(BlockHolder [][] holders){
         for(int j=0; j<4; j++){
             for(int i=0; i<3; i++){                
                 if(holders[i][j].hasBlock() && holders[i+1][j].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i+1][j].getBlock().getNumber()){                    
@@ -217,7 +217,7 @@ public final class BoardController {
         }
     }
     
-    private void shiftDown(BlockHolder [][] holders){              
+    private static void shiftDown(BlockHolder [][] holders){              
         for(int j=0; j<4; j++){
             int aux = -1;         
             for(int i=3; i>=0; i--){
@@ -231,7 +231,7 @@ public final class BoardController {
             }
         }
     }
-    private void combineDown(BlockHolder [][] holders){
+    private static void combineDown(BlockHolder [][] holders){
         for(int j=0; j<4; j++){
             for(int i=3; i>0; i--){                
                 if(holders[i][j].hasBlock() && holders[i-1][j].hasBlock() && holders[i][j].getBlock().getNumber() == holders[i-1][j].getBlock().getNumber()){                    
@@ -242,7 +242,7 @@ public final class BoardController {
         }
     }
     
-    public void easterEgg(BlockHolder [][] holders){
+    public static void easterEgg(BlockHolder [][] holders){
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; j++){
                 if(holders[i][j].hasBlock()){
@@ -254,7 +254,7 @@ public final class BoardController {
         holders[2][2].createBlock(1024, true);
     }
     
-    private void youWon(BlockHolder [][] holders){
+    private static void youWon(BlockHolder [][] holders){
         for(int i = 0; i < 4; i++){
                 for(int j = 0; j < 4; j++){
                     if(holders[i][j].getBlock().getNumber() == 2048){
